@@ -13,7 +13,7 @@ app.set('views', './views')
 app.set('view engine', 'ejs')
 app.use('/public', express.static('public'));
 
-mongoose.connect('mongodb://127.0.0.1:27017/cookieshop')
+mongoose.connect('mongodb://127.0.0.1:27017/resourceTracking')
     .then(() => console.log('DATABASE CONNECTED'))
     .catch(error => console.error(error))
 
