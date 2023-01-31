@@ -46,5 +46,20 @@ router.post('/register', async(req, res) => {
     }
 })
 
+router.post('/login', async(req, res) => {
+    const user = await User.findOne({email: req.body.email})
+    const passwordFlag = await bcrypt.compare(req.body.password, user.password)
+    try{
+        if(passwordFlag){
+            res.redirect('/')
+        }else{
+            res.redirect('/login')
+        }
+    }catch(error){
+        res.redirect('login')
+        console.error(error)
+    }
+})
+
 
 export default router
