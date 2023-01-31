@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import express, { response } from 'express';
 import { config } from "dotenv";
 import { Router } from "express";
+import bcrypt from 'bcrypt';
 
 config()
 

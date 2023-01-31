@@ -2,6 +2,8 @@ import mongoose from "mongoose"
 import express from "express"
 import { config } from "dotenv"
 import routerLogin from './controllers/login.js'
+import bcrypt from 'bcrypt'
+
 config()
 
 const app = express()
