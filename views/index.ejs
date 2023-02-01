@@ -4,17 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
     <header>
-        <h1> Test success </h1>
-
+        <div class="heading">
+            <h1>Keep It Safe</h1>
+            <h2 class="headline-2">Track Your Consumption</h2>
+        </div>
     </header>
     <main>
+        <div class="categories">
+            <div class="gas">
+                <div class="textGas">
+                    <p>
+                        <a href="http://localhost:8000/gasInput"> Calculate Gas</a>
+                    </p>
+                </div>
+                <div class="gasImage">
+                    <img src="/public/water-pipe.png" alt="gaspipe">
+                </div>
+            </div>
+            <div class="electricity">
+                <div class="textElectricity">
+                    <p>
+                        <a href="http://localhost:8000/electricityInput">Calculate Electricity</a>
+                    </p>
+                </div>
+                <div class="electricityImage">
+                    <img class="/public/iconizer-plugin.svg" src="/public/plugin.png">
+                </div>
+            </div>
+            <div class="water">
+                <div class="textWater">
+                    <p>
+                        <a href="http://localhost:8000/waterInput">Calculate Water</a>
+                    </p>
+                </div>
+                <div class="waterImage">
+                    <img class="imageElectricity" src="/public/water-tap.png">
+                </div>
+            </div>
+            <div class="dataInput">
+                <form action="/datainput">
+                    <button>
+                        Input your data
+                    </button>
+                </form>
+            </div>
+    </div>
+    <div class="logoutBar">
         <form action="/logout" method="POST">
-            <button type="submit">LogOut</button>
+            <button>
+                LogOut
+            </button>
         </form>
+    </div>
     </main>
 </body>
 </html>
