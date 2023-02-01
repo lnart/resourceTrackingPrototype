@@ -45,11 +45,12 @@ function checkNotAuthenticated(req, res, next){
 }
 
 
-router.get('/', checkAuthenticated, (req, res) => {
-    const name = req.user.name
-    res.render('index'), {
-        name: name,
-    };
+router.get('/', checkAuthenticated,(req, res) => {
+    const name = req.user.name.toUpperCase()
+    console.log(name)
+    res.render('index', {
+        name: name
+    })
   });
   
   
@@ -102,5 +103,5 @@ router.post('/logout', (req, res) => {
     })
     res.redirect('/login')
 })
-
+ 
 export default router
