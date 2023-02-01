@@ -46,8 +46,10 @@ function checkNotAuthenticated(req, res, next){
 
 
 router.get('/', checkAuthenticated, (req, res) => {
-    console.log(req.user.name)
-    res.send('test success');
+    const name = req.user.name
+    res.render('index'), {
+        name: name,
+    };
   });
   
   
@@ -92,5 +94,13 @@ router.post('/login', passport.authenticate('local', {
     failureFlash: true
 }))
 
+router.post('/logout', (req, res) => {
+    req.logOut(function(error){
+        if(error){
+            console.error(error)
+        }
+    })
+    res.redirect('/login')
+})
 
 export default router
