@@ -13,6 +13,9 @@
         </div>
     </header>
     <main>
+        <% if(messages.error){%>
+           <p><%=messages.error%></p>
+            <%}%>
         <div class="loginBars">
             <form action="/login" method="POST">
                 <input type="email" name="email" placeholder="Email Adress">
