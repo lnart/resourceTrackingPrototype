@@ -7,6 +7,7 @@ import {initialize} from './passport-config.js'
 import passport from 'passport'
 import flash from 'express-flash'
 import session from 'express-session'
+import {ConsumptionData} from '../models/consumptionData.js'
 config()
 
 const router = Router()
@@ -40,7 +41,20 @@ function checkAuthenticated(req, res, next) {
 
   router.get('/dataInput', checkAuthenticated,(req, res) => {
     const name = req.user.name
-    res.send(name)
+    res.render('dataInput')
+})
+
+router.post('/dataInput', checkAuthenticated, async(req, res) => {
+    
+    console.log(req.body)
+    const data = new ConsumptionData({
+        email: req.user.email,
+        count: req.body.count,
+        date: req.body.date,
+        resource: req.body.resource
+    })
+    await data.save()
+    res.redirect('/dataInput')
 })
 
 
