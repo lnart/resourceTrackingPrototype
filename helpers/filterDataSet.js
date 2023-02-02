@@ -25,3 +25,21 @@ export function splitDates(array){
     }
     return months
 }
+
+export function extractCounts(array){
+    const counts = []
+    for(let i = 0; i<array.length; i++){
+        for(const key in array[i]){
+            if(key === 'count'){
+                counts.push(array[i][key])
+            }
+        }
+    }return counts
+}
+
+export function gasPrice(array){
+    const prices = []
+    for(let i = 0; i<array.length; i++){
+        prices.push(array[i]/2.6925)
+    }return prices
+}
