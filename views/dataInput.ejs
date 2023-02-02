@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+
+    </header>
+    <main>
+        <div class="inputBars">
+            <form action="/dataInput" method="POST">
+                <label for="date">Todays Date</label>
+                <input type="date" name="date">
+                <label for="count">Your Count</label>
+                <input type="number" name="count" placeholder="your current count">
+                <!-- <input type="text" name="resource" placeholder="Your Resource" id="resource"  > -->
+                <label for="resource">Your Resource</label>
+
+                <select name="resource" id="resource">
+                    <option value="gas">Gas</option>
+                    <option value="electricity">Electricity</option>
+                    <option value="hamster">Hamster</option>
+                    <option value="water">Water</option>
+                </select>
+                
+                <button>
+                    Send
+                </button>
+
+            </form>
+            
+        </div>
+    </main>
+</body>
+</html>
