@@ -8,6 +8,7 @@ import passport from 'passport'
 import flash from 'express-flash'
 import session from 'express-session'
 import {ConsumptionData} from '../models/consumptionData.js'
+import {arrayDataSet, filterDataSet, splitDates} from '../helpers/filterDataSet.js'
 config()
 
 const router = Router()
@@ -30,3 +31,24 @@ initialize(passport, email => {
 
 router.use(passport.initialize())
 router.use(passport.session())
+
+function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect('/login');
+  }
+
+router.get('/overviewGas',checkAuthenticated ,async(req, res) => {
+    const email = req.user.email
+    const userDataSet = await ConsumptionData.find({email: email})
+    const gasDataSet = filterDataSet(userDataSet, 'gas')
+    const sortDataSet = gasDataSet.sort((a, b) => a.date - b.date)
+    let arrayDates = arrayDataSet(sortDataSet)
+    let x_axis = splitDates(arrayDates)
+
+
+    res.send(x_axis)
+})
+
+export default router

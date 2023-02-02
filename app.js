@@ -4,6 +4,7 @@ import { config } from "dotenv"
 import routerLogin from './controllers/login.js'
 import routerInputData from './controllers/dataInput.js'
 import bcrypt from 'bcrypt'
+import routerOverview from './controllers/resourceOverview.js'
 
 config()
 
@@ -20,6 +21,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/resourceTracking')
 
 app.use(routerLogin)
 app.use(routerInputData)
+app.use(routerOverview)
 
 app.listen(process.env.PORT, () => {
     console.log(`STARTED SERVER ON PORT ${process.env.PORT}`)
