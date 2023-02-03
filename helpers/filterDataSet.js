@@ -1,6 +1,6 @@
 
 
-export function filterDataSet(dataset, resource){
+export function filterDataSetByResource(dataset, resource){
     const filteredData = []
     for(let i = 0; i < dataset.length; i++){
         if(dataset[i]['resource'] === resource){
@@ -43,3 +43,18 @@ export function gasPrice(array){
         prices.push(array[i]/2.6925)
     }return prices
 }
+
+
+export function filterByYear(data) {
+    const result = {};
+  
+    data.forEach(item => {
+      const year = new Date(item.date).getFullYear();
+      if (!result[year]) {
+        result[year] = [];
+      }
+      result[year].push(item);
+    });
+  
+    return result;
+  }
