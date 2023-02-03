@@ -46,15 +46,20 @@ function checkAuthenticated(req, res, next) {
 
 router.post('/dataInput', checkAuthenticated, async(req, res) => {
     
-    console.log(req.body)
-    const data = new ConsumptionData({
-        email: req.user.email,
-        count: req.body.count,
-        date: req.body.date,
-        resource: req.body.resource
-    })
-    await data.save()
-    res.redirect('/dataInput')
+    try {
+        const data = new ConsumptionData({
+            email: req.user.email,
+            count: req.body.count,
+            date: req.body.date,
+            resource: req.body.resource
+        })
+        await data.save()
+        res.redirect('/dataInput')
+    } catch (error) {
+        console.error(error)
+        res.redirect('/dataInput')
+    }
+    
 })
 
 
