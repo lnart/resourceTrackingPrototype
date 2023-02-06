@@ -5,13 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/public/login.css">
 </head>
 <body>
     <header>
         <div class="placeholder">
-            <p>cool Logo</p>
+            <img src="/public/logoProto.png" alt="Logo">
         </div>
     </header>
+    <div class="shape1"></div>
     <main>
         <% if(messages.error){%>
            <p><%=messages.error%></p>
@@ -25,7 +27,7 @@
         </div>
         <div class="registerLink">
             <div class="banner">
-                <p>dont have an account yet?</p><br>
+                <p>dont have an account yet?</p>
                 <a href="/register">register</a>
             </div>
         </div>
