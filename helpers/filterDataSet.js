@@ -26,7 +26,7 @@ export function splitDates(array){
     return months
 }
 
-export function extractCounts(array){
+export function extractGasCounts(array){
     const counts = []
     for(let i = 0; i<array.length; i++){
         for(const key in array[i]){
@@ -57,4 +57,11 @@ export function filterByYear(data) {
     });
   
     return result;
+  }
+
+  export function extractCounts(object, year){
+    const counts = []
+    for(let i = 0; i<object[year].length; i++){
+      counts.push(object[year][i]['count'])
+    }return counts
   }
