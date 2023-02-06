@@ -14,15 +14,61 @@
             <h3 class="headline-2">Track Your Gas Consumption</h3>
         </div>
     </header>
+    <select name="year" id="year">
+      <option value="2021">2021</option>
+      <option value="2022">2022</option>
+      <option value="2023">2023</option>
+      <option value="2024">2024</option>
+      <option value="2025">2025</option>
+  </select>
     <canvas id='myChart' width="200" height="50"></canvas>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
         const ctx = document.getElementById('myChart');
-        let x_axis = JSON.parse(`<%- JSON.stringify(x_axis) %>`)
-        let gasCounts = JSON.parse(`<%- JSON.stringify(gasCounts) %>`)
-        let gasPrices = JSON.parse(`<%- JSON.stringify(gasPrices) %>`)
-        new Chart(ctx, {
+        const year = document.getElementById('year');
+        
+        let sortedDataSet = JSON.parse(`<%- JSON.stringify(sortedDataSet) %>`)
+       
+        function extractCounts(object, year){
+          console.log("year: old", year)
+          const counts = []
+          for(let i = 0; i<object[year].length; i++){
+            counts.push(object[year][i]['count'])
+          }
+          return counts
+        }
+
+        function calculateGasPrice(array){
+          let price = []
+          for(let i = 0; i<array.length; i++){
+            price.push(array[i] / 2.965)
+          }return price
+        }
+
+        let gasCounts = extractCounts(sortedDataSet, year.value);
+        let gasPrice = calculateGasPrice(gasCounts)
+        
+        year.addEventListener("change", () => {
+          const yearValue = year.value;
+          const actualValue = year.options[year.selectedIndex].text;
+          gasCounts = extractCounts(sortedDataSet, actualValue)
+          gasPrice = calculateGasPrice(gasCounts)
+
+          const currentChart = document.getElementById('myChart');
+          currentChart.remove()
+
+          const newCanvas = document.createElement("canvas")
+          newCanvas.id = "myChart"
+          newCanvas.setAttribute("width", "200")
+          newCanvas.setAttribute("height", "50")
+          document.body.append(newCanvas)
+          createChart(newCanvas)
+        })
+        
+        function createChart(canvasElement) {
+
+          new Chart(canvasElement, {
           type: 'line',
           data: {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octobre', 'November', 'December'],
@@ -32,10 +78,10 @@
               borderWidth: 1
             }, {
                 type: 'line',
-                data: gasPrices,
+                data: gasPrice,
                 label: 'Price in Euro'
               }]
-      },
+          },
           options: {
             scales: {
               y: {
@@ -45,6 +91,11 @@
             }
           }
         });
+          
+        }
+
+        createChart(ctx)
+
       </script>
 </body>
 </html>
