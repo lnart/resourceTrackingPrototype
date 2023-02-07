@@ -41,7 +41,12 @@ function checkAuthenticated(req, res, next) {
 
   router.get('/dataInput', checkAuthenticated,(req, res) => {
     const name = req.user.name
-    res.render('dataInput')
+    let flag = false
+    const msgErr = 'Data could not been saved'
+    res.render('dataInput', {
+        flag: flag,
+        msgErr: msgErr
+    })
 })
 
 router.post('/dataInput', checkAuthenticated, async(req, res) => {
@@ -54,8 +59,10 @@ router.post('/dataInput', checkAuthenticated, async(req, res) => {
             resource: req.body.resource
         })
         await data.save()
+        console.log('data saved')
         res.redirect('/dataInput')
     } catch (error) {
+        const flag = true
         console.error(error)
         res.redirect('/dataInput')
     }
