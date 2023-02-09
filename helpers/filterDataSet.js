@@ -9,22 +9,6 @@ export function filterDataSetByResource(dataset, resource){
     }return filteredData
 }
 
-export function arrayDataSet(array){
-    const dates = []
-    for(let i = 0; i<array.length; i++){
-        dates.push(array[i]['date'])
-    }return dates
-}
-
-export function splitDates(array){
-    let months = []
-    for(let i = 0; i < array.length; i++){
-        let date = new Date(array[i]);
-        let month = date.getMonth() + 1;
-        months.push(month);
-    }
-    return months
-}
 
 export function extractGasCounts(array){
     const counts = []
@@ -37,12 +21,6 @@ export function extractGasCounts(array){
     }return counts
 }
 
-export function gasPrice(array){
-    const prices = []
-    for(let i = 0; i<array.length; i++){
-        prices.push(array[i]/2.6925)
-    }return prices
-}
 
 
 export function filterByYear(data) {
@@ -64,4 +42,10 @@ export function filterByYear(data) {
     for(let i = 0; i<object[year].length; i++){
       counts.push(object[year][i]['count'])
     }return counts
+  }
+
+  export function returnMonthlyBill(){
+    let now = new Date()
+    now = now.toDateString().toString().split(' ')[1]
+    return now
   }
