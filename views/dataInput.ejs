@@ -30,11 +30,11 @@
                 <button>
                     Send
                 </button>
-
+                <% if(flag){%>
+                    <p><%= msgErr %></p>
+                    <%}%>                
+                
             </form>
-            <% if(flag){%>
-            <p><%= msgError %></p>
-            <%}%>
             
         </div>
     </main>

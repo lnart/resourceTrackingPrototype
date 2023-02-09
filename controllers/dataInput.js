@@ -38,11 +38,15 @@ function checkAuthenticated(req, res, next) {
     res.redirect('/login');
   }
 
+let flag = false
+let errorKind = 'unknown'
 
   router.get('/dataInput', checkAuthenticated,(req, res) => {
     const name = req.user.name
-    let flag = false
-    const msgErr = 'Data could not been saved'
+    let msgErr = 'Date is already in use'
+    if(errorKind === 'no count'){
+        msgErr = 'You have to type in your count!'
+    }
     res.render('dataInput', {
         flag: flag,
         msgErr: msgErr
@@ -52,6 +56,7 @@ function checkAuthenticated(req, res, next) {
 router.post('/dataInput', checkAuthenticated, async(req, res) => {
     
     try {
+        flag = false
         const data = new ConsumptionData({
             email: req.user.email,
             count: req.body.count,
@@ -59,11 +64,13 @@ router.post('/dataInput', checkAuthenticated, async(req, res) => {
             resource: req.body.resource
         })
         await data.save()
-        console.log('data saved')
         res.redirect('/dataInput')
     } catch (error) {
-        const flag = true
-        console.error(error)
+        const strigyfiyied = JSON.stringify(error)
+        flag = true
+        if(error?.errors?.count?.message){
+            errorKind = 'no count'
+        }
         res.redirect('/dataInput')
     }
     
