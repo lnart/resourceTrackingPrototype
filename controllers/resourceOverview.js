@@ -8,7 +8,7 @@ import passport from 'passport'
 import flash from 'express-flash'
 import session from 'express-session'
 import {ConsumptionData} from '../models/consumptionData.js'
-import {arrayDataSet, extractCounts, filterByYear, filterDataSetByResource, gasPrice, splitDates} from '../helpers/filterDataSet.js'
+import {extractCounts, filterByYear, filterDataSetByResource, returnMonthlyBill} from '../helpers/filterDataSet.js'
 config()
 
 const router = Router()
@@ -46,7 +46,8 @@ router.get('/overviewGas',checkAuthenticated ,async(req, res) => {
     const sortedDataSet = filterByYear(gasDataSet)
     res.render('overviewGas', {
         sortedDataSet: sortedDataSet,
-        extractCounts: extractCounts
+        extractCounts: extractCounts,
+        returnMonthlyBill: returnMonthlyBill
 
     })
 })
