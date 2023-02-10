@@ -8,6 +8,7 @@ import passport from 'passport'
 import flash from 'express-flash'
 import session from 'express-session'
 import {ConsumptionData} from '../models/consumptionData.js'
+import { returnReadableData } from "../helpers/filterDataSet.js";
 config()
 
 const router = Router()
@@ -75,6 +76,52 @@ router.post('/dataInput', checkAuthenticated, async(req, res) => {
     }
     
 })
+
+router.get('/deleteUser', checkAuthenticated, async(req, res) => {
+    const allUsers = await User.find({email: req.user.email})
+
+
+    res.render('dataDelete', {
+        username: req.user.name,
+        userEmail: req.user.email
+    })
+})
+
+
+router.post('/deleteUser', checkAuthenticated, async(req, res) => {
+    const allUsers = await User.find({email: req.user.email})
+    await User.findOneAndDelete({email: req.user.email})
+    res.redirect('/login')
+
+})
+
+router.get('/updateUser', checkAuthenticated, (req, res)=>{
+    let name = req.user.name
+    let email = req.user.email
+    res.render('updateProfile', {
+        name: name,
+        email: email
+    })
+})
+
+router.post('/updateProfile', async(req, res)=> {
+    const newName = req.body.name
+    const newEmail = req.body.email
+    await User.findOneAndUpdate({email: req.user.email, email: newEmail})
+    await User.findOneAndUpdate({email: req.user.email, name: newName})
+    console.log(req.user.name)
+    res.redirect('/')
+
+})
+// router.get('/datadelete', checkAuthenticated, async(req, res) => {
+//     const email = req.user.email
+//     let data = await ConsumptionData.find({email: email})
+//     data = returnReadableData(data)
+//     res.render('dataDelete',{
+//         data: data
+//     })
+// })
+
 
 
 export default router
