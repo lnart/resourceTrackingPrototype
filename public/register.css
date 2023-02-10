@@ -1,0 +1,33 @@
+.registerBars{
+    display: flex;
+    justify-content: center;
+
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+
+}
+
+button{
+    margin-left: 60px;
+}
+
+.shape{
+    width: 30%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    left: 0;
+    top: 0;
+    clip-path: polygon(0 0, 0 0, 50% 100%, 0 100%);}
+
+.shape2{
+    width: 30%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    right: 0;
+    top: 0;
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 100% 100%);}
