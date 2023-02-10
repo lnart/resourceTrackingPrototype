@@ -1,0 +1,45 @@
+*{
+    display: inline;
+}
+
+main{
+    margin-top: 100px;
+}
+
+.userdata{
+    display: flex;
+    justify-content: center;
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.delete{
+    margin-left: 50px;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+
+}
+.shape{
+    width: 30%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    left: 0;
+    top: 0;
+    clip-path: polygon(0 0, 0 0, 50% 100%, 0 100%);}
+
+.shape2{
+    width: 30%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    right: 0;
+    top: 0;
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 100% 100%);}
