@@ -52,4 +52,17 @@ router.get('/overviewGas',checkAuthenticated ,async(req, res) => {
     })
 })
 
+router.get('/overviewElectricity', checkAuthenticated,  async(req, res)=>{
+    const userDataSet = await ConsumptionData.find({email: req.user.email})
+    const electricityDataSet = filterDataSetByResource(userDataSet, 'electricity')
+    const sortedDataSet = filterByYear(electricityDataSet)
+    console.log(sortedDataSet)
+    res.render('overviewGas', {
+        sortedDataSet: sortedDataSet,
+        extractCounts: extractCounts,
+        returnMonthlyBill: returnMonthlyBill
+    })
+})
+
+
 export default router
