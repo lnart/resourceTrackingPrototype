@@ -1,0 +1,15 @@
+header{
+    display: flex;
+    justify-content: center;
+}
+.navbar{
+    display: flex;
+    justify-content: space-evenly;
+
+
+}
+
+a{
+    color: black;
+}
+

@@ -1,7 +1,7 @@
 .inputBars{
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 100px;
 }
 .shape{
     width: 30%;
@@ -30,4 +30,15 @@
 .delete{
     margin-top: 150px;
     
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-evenly;
+
+
+}
+
+a{
+    color: black;
 }
