@@ -38,9 +38,9 @@ a{
     }
     
     .gas { grid-area: 1 / 1 / 2 / 2; }
-    .electricity { grid-area: 1 / 2 / 2 / 3; }
-    .water { grid-area: 1 / 3 / 2 / 4; }
-    .dataInput { grid-area: 2 / 2 / 3 / 3; }
+    .dataInput { grid-area: 1 / 2 / 2 / 3; }
+    .electricity { grid-area: 1 / 3 / 2 / 4; }
+    .water { grid-area: 2 / 2 / 3 / 3; }
     
 
 
