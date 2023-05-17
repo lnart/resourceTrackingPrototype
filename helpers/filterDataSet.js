@@ -49,3 +49,59 @@ export function filterByYear(data) {
     now = now.toDateString().toString().split(' ')[1]
     return now
   }
+
+
+  export function returnSortedDates(array){
+    const dates = []
+    for (let i = 0; i<array.length; i++){
+      dates.push(array[i].Date)
+    }
+    return dates
+  }
+
+  export function getDocumentsOfCurrentMonth(array){
+    const documents = []
+    const currentMonth = new Date().getMonth()
+    for(let i = 0; i<array.length; i++){
+      const month = new Date(array[i].Date).getMonth()
+      if(month === currentMonth){
+        documents.push(array[i])
+      }
+    }
+    return documents
+  }
+
+  export function getCountsFromDocuments(documents){
+    const counts = []
+    for (let i = 0; array.length; i++){
+      counts.push(documents.counts)
+    }
+    return counts
+  }
+
+  export function calculateAverageConsumption(array){
+    for(let i = 0; i<array.length; i++){
+
+    }
+  }
+
+  export function calculateAverageOfArray(array) {
+    const sortedArray = validateArrayOfNumbers(array)
+    const sum = sortedArray.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    const average = sum / sortedArray.length;
+    return average;
+  }
+
+  function validateArrayOfNumbers(array){
+    for(let i = 0; i<array.length; i++){
+      if(typeof(array[i] !== typeof(1))){
+        const index = array.indexOf(array[i])
+        array.splice(index, 1)
+      }
+    }
+    return array
+  }
+
+
+  
+
